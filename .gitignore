@@ -485,3 +485,6 @@ $RECYCLE.BIN/
 
 # Ignore all folders in Settings/
 src/backend/settings/*/
+
+# Ignore appsettings.json file
+src/backend/CashBook.Api/appsettings.json
