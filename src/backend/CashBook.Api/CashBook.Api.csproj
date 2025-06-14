@@ -10,4 +10,17 @@
       <ProjectReference Include="..\CashBook.Infrastructure\CashBook.Infrastructure.csproj" />
     </ItemGroup>
 
+    <PropertyGroup>
+        <EnvironmentName Condition="'$(Configuration)' == 'Debug'">Development</EnvironmentName>
+        <EnvironmentName Condition="'$(Configuration)' == 'Release'">Production</EnvironmentName>
+        <EnvironmentName Condition="'$(EnvironmentName)' == ''">Development</EnvironmentName> <!-- Default -->
+    </PropertyGroup>
+
+    <Target Name="PrebuildConfig" BeforeTargets="BeforeBuild">
+        <Message Text="Copying config for environment: $(EnvironmentName)" Importance="High" />
+        <Copy SourceFiles="..\settings\$(EnvironmentName)\app.config.json"
+              DestinationFiles="appsettings.json"
+              SkipUnchangedFiles="true" />
+    </Target>
+
 </Project>
