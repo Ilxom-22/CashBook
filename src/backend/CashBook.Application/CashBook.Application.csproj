@@ -10,4 +10,13 @@
       <ProjectReference Include="..\CashBook.Domain\CashBook.Domain.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="Cashbooks\Models\" />
+      <Folder Include="Cashbooks\Services\" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="AutoMapper" Version="14.0.0" />
+    </ItemGroup>
+
 </Project>
