@@ -488,3 +488,6 @@ src/backend/settings/*/
 
 # Ignore appsettings.json file
 src/backend/CashBook.Api/appsettings.json
+
+# Ignore local sql lite db file
+src/backend/Cashbook.Api/cashbook.db
