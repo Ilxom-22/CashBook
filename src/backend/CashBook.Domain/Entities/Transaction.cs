@@ -1,3 +1,4 @@
+using System.ComponentModel.DataAnnotations;
 using CashBook.Domain.Common.Entities;
 using CashBook.Domain.Enums;
 
@@ -7,7 +8,8 @@ public class Transaction : Entity
 {
     public decimal Amount { get; set; }
 
-    public string Remark { get; set; } = default!;
+    [MaxLength(500)]
+    public string Remark { get; set; } = null!;
 
     public DateTime TransactionTime { get; set; }
 
@@ -19,7 +21,7 @@ public class Transaction : Entity
 
     public Guid CashbookId { get; set; }
 
-    public virtual Cashbook Cashbook { get; set; } = default!;
+    public virtual Cashbook Cashbook { get; set; } = null!;
 
-    public virtual Category Category { get; set; } = default!;
+    public virtual Category Category { get; set; } = null!;
 }
