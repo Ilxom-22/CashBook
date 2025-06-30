@@ -26,4 +26,25 @@ public class CashbooksController(IMediator mediator) : ControllerBase
         
         return Ok(result);
     }
+
+    [HttpPut("{id}")]
+    public async ValueTask<IActionResult> UpdateCashbook(
+        Guid id,
+        [FromBody] string cashbookName,
+        CancellationToken cancellationToken)
+    {
+        var result = await mediator.Send(new UpdateCashbookCommand { Id = id, CashbookName = cashbookName }, cancellationToken);
+        
+        return Ok(result);
+    }
+
+    [HttpDelete("{id}")]
+    public async ValueTask<IActionResult> DeleteCashbook(
+        Guid id,
+        CancellationToken cancellationToken)
+    {
+        var result = await mediator.Send(new DeleteCashbookCommand { Id = id }, cancellationToken);
+        
+        return Ok(result);
+    }
 }

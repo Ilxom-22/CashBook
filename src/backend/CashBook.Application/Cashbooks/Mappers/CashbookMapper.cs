@@ -11,5 +11,9 @@ public class CashbookMapper : Profile
         CreateMap<CreateCashbookCommand, Cashbook>()
             .ForMember(dest => dest.Name, opt => opt
                 .MapFrom(src => src.CashbookName));
+
+        CreateMap<UpdateCashbookCommand, Cashbook>()
+            .ForMember(dest => dest.Name, opt => opt
+                .MapFrom(src => src.CashbookName));
     }
 }

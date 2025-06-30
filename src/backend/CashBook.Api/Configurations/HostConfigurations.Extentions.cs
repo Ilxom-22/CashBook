@@ -1,4 +1,6 @@
 using System.Reflection;
+using CashBook.Application.Cashbooks.Commands;
+using CashBook.Infrastructure.Cashbooks.CommandHandlers;
 using CashBook.Persistence.DataContexts;
 using CashBook.Persistence.Extensions;
 using CashBook.Persistence.Repositories;
@@ -51,7 +53,7 @@ public static partial class HostConfigurations
     private static WebApplicationBuilder AddMediator(this WebApplicationBuilder builder)
     {
         builder.Services.AddMediatR(conf 
-            => {conf.RegisterServicesFromAssemblies(Assemblies.ToArray());});
+            => {conf.RegisterServicesFromAssemblies(typeof(CreateCashbookCommandHandler).Assembly);});
         
         return builder;
     }
