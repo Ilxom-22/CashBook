@@ -3,6 +3,7 @@ using CashBook.Application.Cashbooks.Commands;
 using CashBook.Infrastructure.Cashbooks.CommandHandlers;
 using CashBook.Persistence.DataContexts;
 using CashBook.Persistence.Extensions;
+using CashBook.Persistence.Interceptors;
 using CashBook.Persistence.Repositories;
 using CashBook.Persistence.Repositories.Interfaces;
 using FluentValidation;
@@ -44,8 +45,11 @@ public static partial class HostConfigurations
     
     private static WebApplicationBuilder AddPersistence(this WebApplicationBuilder builder)
     {
-        builder.Services.AddDbContext<AppDbContext>(options => 
-            options.UseSqlite(builder.Configuration.GetConnectionString("SqlLiteConnectionString")));
+        builder.Services.AddScoped<UpdateAuditableInterceptor>();
+        
+        builder.Services.AddDbContext<AppDbContext>((provider, options) => 
+            options.UseSqlite(builder.Configuration.GetConnectionString("SqlLiteConnectionString"))
+                .AddInterceptors(provider.GetRequiredService<UpdateAuditableInterceptor>()));
         
         return builder;
     }
