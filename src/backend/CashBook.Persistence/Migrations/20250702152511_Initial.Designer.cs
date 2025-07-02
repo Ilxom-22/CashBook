@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CashBook.Persistence.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20250615114049_Initial")]
+    [Migration("20250702152511_Initial")]
     partial class Initial
     {
         /// <inheritdoc />
@@ -24,6 +24,18 @@ namespace CashBook.Persistence.Migrations
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
+                        .HasColumnType("TEXT");
+
+                    b.Property<decimal>("Balance")
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTimeOffset>("CreatedTime")
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("Currency")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<DateTimeOffset?>("ModifiedTime")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Name")

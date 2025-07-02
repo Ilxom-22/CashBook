@@ -16,7 +16,11 @@ namespace CashBook.Persistence.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "TEXT", nullable: false),
-                    Name = table.Column<string>(type: "TEXT", maxLength: 100, nullable: false)
+                    Name = table.Column<string>(type: "TEXT", maxLength: 100, nullable: false),
+                    Balance = table.Column<decimal>(type: "TEXT", nullable: false),
+                    Currency = table.Column<int>(type: "INTEGER", nullable: false),
+                    CreatedTime = table.Column<DateTimeOffset>(type: "TEXT", nullable: false),
+                    ModifiedTime = table.Column<DateTimeOffset>(type: "TEXT", nullable: true)
                 },
                 constraints: table =>
                 {

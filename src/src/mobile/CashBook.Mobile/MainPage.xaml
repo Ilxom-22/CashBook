@@ -1,0 +1,352 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="CashBook.Mobile.MainPage"
+             Title=""
+             BackgroundColor="#F8F9FA">
+
+    <Grid RowDefinitions="Auto,Auto,Auto,*">
+        
+        <!-- Header -->
+        <Grid Grid.Row="0" 
+              ColumnDefinitions="*,Auto,Auto"
+              Padding="20,10,20,10"
+              BackgroundColor="White">
+            <Label Grid.Column="0" 
+                   Text="Your Books"
+                   FontSize="24"
+                   FontAttributes="Bold"
+                   TextColor="#2C3E50"
+                   VerticalOptions="Center" />
+            <Label Grid.Column="1"
+                   Text="☰"
+                   FontSize="20"
+                   TextColor="#6C757D"
+                   VerticalOptions="Center"
+                   HorizontalOptions="Center"
+                   Padding="10">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OnMenuTapped" />
+                </Label.GestureRecognizers>
+            </Label>
+            <Label Grid.Column="2"
+                   Text="🔍"
+                   FontSize="20"
+                   TextColor="#6C757D"
+                   VerticalOptions="Center"
+                   HorizontalOptions="Center"
+                   Padding="10">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OnSearchTapped" />
+                </Label.GestureRecognizers>
+            </Label>
+        </Grid>
+        
+        <!-- Search Bar (Hidden by default, shown when search is tapped) -->
+        <Frame Grid.Row="1" 
+               x:Name="SearchFrame"
+               IsVisible="False"
+               BackgroundColor="White"
+               BorderColor="LightGray"
+               CornerRadius="25"
+               Padding="16,8"
+               Margin="16,8">
+            <Grid ColumnDefinitions="Auto,*,Auto">
+                <Label Grid.Column="0" 
+                       Text="🔍" 
+                       FontSize="18"
+                       VerticalOptions="Center"
+                       Margin="0,0,8,0" />
+                <Entry Grid.Column="1"
+                       x:Name="SearchEntry"
+                       Placeholder="Search your books..."
+                       PlaceholderColor="Gray"
+                       TextColor="Black"
+                       Text="{Binding SearchText}"
+                       BackgroundColor="Transparent"
+                       FontSize="16" />
+                <Label Grid.Column="2"
+                       Text="✕"
+                       FontSize="16"
+                       TextColor="Gray"
+                       VerticalOptions="Center"
+                       Padding="8,0">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnSearchCloseTapped" />
+                    </Label.GestureRecognizers>
+                </Label>
+            </Grid>
+        </Frame>
+
+        <!-- Status Message Bar -->
+        <Frame Grid.Row="2" 
+               IsVisible="{Binding HasStatusMessage}"
+               BackgroundColor="{Binding HasError, Converter={StaticResource BoolToColorConverter}}"
+               BorderColor="Transparent"
+               CornerRadius="12"
+               Margin="16,4,16,8"
+               Padding="16,12"
+               HasShadow="True">
+            <Grid ColumnDefinitions="Auto,*,Auto">
+                <!-- Status Icon -->
+                <Label Grid.Column="0"
+                       Text="{Binding HasError, Converter={StaticResource BoolToIconConverter}}"
+                       FontSize="16"
+                       TextColor="White"
+                       VerticalOptions="Center"
+                       Margin="0,0,12,0" />
+                
+                <!-- Status Message -->
+                <Label Grid.Column="1" 
+                       Text="{Binding StatusMessage}"
+                       TextColor="White"
+                       FontSize="14"
+                       FontAttributes="None"
+                       VerticalOptions="Center"
+                       LineBreakMode="WordWrap" />
+                
+                <!-- Close Button -->
+                <Frame Grid.Column="2"
+                       BackgroundColor="White"
+                       CornerRadius="10"
+                       WidthRequest="20"
+                       HeightRequest="20"
+                       VerticalOptions="Center"
+                       HorizontalOptions="Center"
+                       Padding="0"
+                       HasShadow="False"
+                       Margin="12,0,0,0">
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding DismissStatusCommand}" />
+                    </Frame.GestureRecognizers>
+                    <Label Text="✕"
+                           TextColor="{Binding HasError, Converter={StaticResource BoolToColorConverter}}"
+                           FontSize="10"
+                           FontAttributes="Bold"
+                           HorizontalOptions="Center"
+                           VerticalOptions="Center" />
+                </Frame>
+            </Grid>
+        </Frame>
+
+        <!-- Content Area -->
+        <Grid Grid.Row="3">
+            <!-- Loading Indicator -->
+            <ActivityIndicator IsVisible="{Binding IsLoading}"
+                              IsRunning="{Binding IsLoading}"
+                              Color="#5A67D8"
+                              VerticalOptions="Center"
+                              HorizontalOptions="Center" />
+
+            <!-- Cashbook List -->
+            <CollectionView ItemsSource="{Binding Cashbooks}"
+                            IsVisible="{Binding IsLoading, Converter={StaticResource InverseBoolConverter}}"
+                            BackgroundColor="Transparent"
+                            Margin="16,8,16,100">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid Padding="0,6">
+                            <Frame BackgroundColor="White"
+                                   BorderColor="Transparent"
+                                   CornerRadius="12"
+                                   Padding="16"
+                                   HasShadow="True"
+                                   Margin="0,2">
+                                <Grid ColumnDefinitions="Auto,*,Auto,Auto">
+                                    
+                                    <!-- Book Icon -->
+                                    <Frame Grid.Column="0"
+                                           BackgroundColor="#5A67D8"
+                                           CornerRadius="8"
+                                           WidthRequest="40"
+                                           HeightRequest="40"
+                                           Padding="0"
+                                           VerticalOptions="Start"
+                                           HasShadow="False">
+                                        <Label Text="📚"
+                                               FontSize="20"
+                                               HorizontalOptions="Center"
+                                               VerticalOptions="Center" />
+                                    </Frame>
+                                    
+                                    <!-- Cashbook Info -->
+                                    <StackLayout Grid.Column="1" 
+                                                 Spacing="2"
+                                                 Margin="12,0,0,0"
+                                                 VerticalOptions="Center">
+                                        <Label Text="{Binding Name}" 
+                                               FontSize="16"
+                                               FontAttributes="Bold"
+                                               TextColor="#2C3E50" />
+                                        <Label Text="{Binding LastUpdatedText, StringFormat='Updated {0}'}"
+                                               FontSize="12"
+                                               TextColor="#6C757D" />
+                                    </StackLayout>
+                                    
+                                    <!-- Balance -->
+                                    <Label Grid.Column="2"
+                                           Text="{Binding Balance, StringFormat='{0:N0}'}"
+                                           FontSize="18"
+                                           FontAttributes="Bold"
+                                           TextColor="#28A745"
+                                           VerticalOptions="Center"
+                                           HorizontalOptions="End"
+                                           Margin="8,0" />
+                                    
+                                    <!-- Menu Button -->
+                                    <Label Grid.Column="3"
+                                           Text="•••"
+                                           FontSize="16"
+                                           FontAttributes="Bold"
+                                           TextColor="#6C757D"
+                                           VerticalOptions="Start"
+                                           HorizontalOptions="End"
+                                           Padding="8"
+                                           WidthRequest="32"
+                                           HeightRequest="32"
+                                           Margin="0,4,0,0"
+                                           HorizontalTextAlignment="Center"
+                                           VerticalTextAlignment="Center">
+                                        <Label.GestureRecognizers>
+                                            <TapGestureRecognizer Tapped="OnMenuButtonClicked" />
+                                        </Label.GestureRecognizers>
+                                    </Label>
+                                </Grid>
+                            </Frame>
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+            <!-- Floating Action Button - Bottom Right -->
+            <Frame Grid.Row="0"
+                   BackgroundColor="#5A67D8"
+                   CornerRadius="30"
+                   Padding="0"
+                   WidthRequest="60"
+                   HeightRequest="60"
+                   VerticalOptions="End"
+                   HorizontalOptions="End"
+                   Margin="0,0,20,20"
+                   HasShadow="True">
+                <Frame.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OnAddNewBookClicked" />
+                </Frame.GestureRecognizers>
+                <Label Text="+"
+                       FontSize="28"
+                       FontAttributes="Bold"
+                       TextColor="White"
+                       VerticalOptions="Center"
+                       HorizontalOptions="Center" />
+            </Frame>
+        </Grid>
+
+        <!-- Add New Book Modal Background -->
+        <Grid x:Name="ModalBackground"
+              IsVisible="False"
+              BackgroundColor="#80000000"
+              VerticalOptions="FillAndExpand"
+              HorizontalOptions="FillAndExpand">
+            <Grid.GestureRecognizers>
+                <TapGestureRecognizer Tapped="OnModalBackgroundTapped" />
+            </Grid.GestureRecognizers>
+        </Grid>
+
+        <!-- Add New Book Bottom Sheet Modal -->
+        <Grid x:Name="AddBookModal"
+              IsVisible="False"
+              VerticalOptions="End"
+              HorizontalOptions="FillAndExpand"
+              TranslationY="300">
+            
+            <Frame BackgroundColor="White"
+                   CornerRadius="0,0,0,0"
+                   Padding="0"
+                   Margin="0"
+                   HasShadow="True"
+                   VerticalOptions="End"
+                   HorizontalOptions="FillAndExpand">
+            
+            <Grid RowDefinitions="Auto,*,Auto" Padding="0">
+                
+                <!-- Header -->
+                <Grid Grid.Row="0" 
+                      ColumnDefinitions="Auto,*,Auto"
+                      Padding="20,20,20,10"
+                      BackgroundColor="White">
+                    
+                    <!-- Close Button -->
+                    <Frame Grid.Column="0"
+                           BackgroundColor="Transparent"
+                           Padding="0"
+                           WidthRequest="32"
+                           HeightRequest="32"
+                           VerticalOptions="Center">
+                        <Frame.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnCloseModalClicked" />
+                        </Frame.GestureRecognizers>
+                        <Label Text="✕"
+                               FontSize="18"
+                               TextColor="#6C757D"
+                               HorizontalOptions="Center"
+                               VerticalOptions="Center" />
+                    </Frame>
+                    
+                    <!-- Title -->
+                    <Label Grid.Column="1"
+                           Text="Add New Book"
+                           FontSize="20"
+                           FontAttributes="Bold"
+                           TextColor="#2C3E50"
+                           HorizontalOptions="Center"
+                           VerticalOptions="Center" />
+                </Grid>
+                
+                <!-- Content -->
+                <StackLayout Grid.Row="1" 
+                             Padding="24,10,24,20"
+                             Spacing="16">
+                    
+                    <!-- Book Name Input -->
+                    <StackLayout Spacing="8">
+                        <Label Text="Enter Book Name"
+                               FontSize="16"
+                               TextColor="#5A67D8"
+                               FontAttributes="Bold" />
+                        <Frame BackgroundColor="#F8F9FA"
+                               BorderColor="#5A67D8"
+                               CornerRadius="8"
+                               Padding="16,14"
+                               HasShadow="False">
+                            <Entry x:Name="BookNameEntry"
+                                   Placeholder="Enter cashbook name..."
+                                   PlaceholderColor="#6C757D"
+                                   TextColor="#2C3E50"
+                                   FontSize="16"
+                                   BackgroundColor="Transparent"
+                                   ReturnType="Done"
+                                   Completed="OnBookNameEntryCompleted" />
+                        </Frame>
+                    </StackLayout>
+                </StackLayout>
+                
+                                <!-- Bottom Button -->
+                <Grid Grid.Row="2" 
+                      Padding="24,0,24,24"
+                      BackgroundColor="White">
+                    <Button Text="+ ADD NEW BOOK"
+                            BackgroundColor="#5A67D8"
+                            TextColor="White"
+                            FontSize="16"
+                            FontAttributes="Bold"
+                            CornerRadius="8"
+                            HeightRequest="48"
+                            Clicked="OnCreateBookClicked" />
+                </Grid>
+             </Grid>
+            </Frame>
+        </Grid>
+
+    </Grid>
+
+</ContentPage>

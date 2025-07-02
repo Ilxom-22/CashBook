@@ -23,6 +23,18 @@ namespace CashBook.Persistence.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("TEXT");
 
+                    b.Property<decimal>("Balance")
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTimeOffset>("CreatedTime")
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("Currency")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<DateTimeOffset?>("ModifiedTime")
+                        .HasColumnType("TEXT");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(100)
