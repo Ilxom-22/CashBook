@@ -1,9 +1,15 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:converters="clr-namespace:CashBook.Mobile.Converters"
              x:Class="CashBook.Mobile.MainPage"
+             x:Name="mainPage"
              Title=""
              BackgroundColor="#F8F9FA">
+
+    <ContentPage.Resources>
+        <converters:InverseBoolConverter x:Key="InverseBoolConverter" />
+    </ContentPage.Resources>
 
     <Grid RowDefinitions="Auto,Auto,Auto,*">
         
@@ -26,7 +32,7 @@
                    HorizontalOptions="Center"
                    Padding="10">
                 <Label.GestureRecognizers>
-                    <TapGestureRecognizer Tapped="OnMenuTapped" />
+                    <TapGestureRecognizer Command="{Binding MenuTappedCommand}" />
                 </Label.GestureRecognizers>
             </Label>
             <Label Grid.Column="2"
@@ -208,7 +214,7 @@
                                            HorizontalTextAlignment="Center"
                                            VerticalTextAlignment="Center">
                                         <Label.GestureRecognizers>
-                                            <TapGestureRecognizer Tapped="OnMenuButtonClicked" />
+                                            <TapGestureRecognizer Command="{Binding Source={x:Reference mainPage}, Path=BindingContext.MenuButtonCommand}" CommandParameter="{Binding .}" />
                                         </Label.GestureRecognizers>
                                     </Label>
                                 </Grid>
@@ -230,7 +236,7 @@
                    Margin="0,0,20,20"
                    HasShadow="True">
                 <Frame.GestureRecognizers>
-                    <TapGestureRecognizer Tapped="OnAddNewBookClicked" />
+                    <TapGestureRecognizer Command="{Binding ShowAddBookModalCommand}" />
                 </Frame.GestureRecognizers>
                 <Label Text="+"
                        FontSize="28"
@@ -241,109 +247,48 @@
             </Frame>
         </Grid>
 
-        <!-- Add New Book Modal Background -->
-        <Grid x:Name="ModalBackground"
-              IsVisible="False"
+        <!-- Simple Add Book Modal -->
+        <Grid IsVisible="{Binding IsAddBookModalVisible}"
               BackgroundColor="#80000000"
               VerticalOptions="FillAndExpand"
               HorizontalOptions="FillAndExpand">
-            <Grid.GestureRecognizers>
-                <TapGestureRecognizer Tapped="OnModalBackgroundTapped" />
-            </Grid.GestureRecognizers>
-        </Grid>
-
-        <!-- Add New Book Bottom Sheet Modal -->
-        <Grid x:Name="AddBookModal"
-              IsVisible="False"
-              VerticalOptions="End"
-              HorizontalOptions="FillAndExpand"
-              TranslationY="300">
             
             <Frame BackgroundColor="White"
-                   CornerRadius="0,0,0,0"
-                   Padding="0"
-                   Margin="0"
-                   HasShadow="True"
-                   VerticalOptions="End"
-                   HorizontalOptions="FillAndExpand">
-            
-            <Grid RowDefinitions="Auto,*,Auto" Padding="0">
+                   CornerRadius="12"
+                   Padding="24"
+                   Margin="32"
+                   VerticalOptions="Center"
+                   HorizontalOptions="FillAndExpand"
+                   HasShadow="True">
                 
-                <!-- Header -->
-                <Grid Grid.Row="0" 
-                      ColumnDefinitions="Auto,*,Auto"
-                      Padding="20,20,20,10"
-                      BackgroundColor="White">
-                    
-                    <!-- Close Button -->
-                    <Frame Grid.Column="0"
-                           BackgroundColor="Transparent"
-                           Padding="0"
-                           WidthRequest="32"
-                           HeightRequest="32"
-                           VerticalOptions="Center">
-                        <Frame.GestureRecognizers>
-                            <TapGestureRecognizer Tapped="OnCloseModalClicked" />
-                        </Frame.GestureRecognizers>
-                        <Label Text="✕"
-                               FontSize="18"
-                               TextColor="#6C757D"
-                               HorizontalOptions="Center"
-                               VerticalOptions="Center" />
-                    </Frame>
-                    
-                    <!-- Title -->
-                    <Label Grid.Column="1"
-                           Text="Add New Book"
+                <StackLayout Spacing="16">
+                    <Label Text="Add New Book"
                            FontSize="20"
                            FontAttributes="Bold"
                            TextColor="#2C3E50"
-                           HorizontalOptions="Center"
-                           VerticalOptions="Center" />
-                </Grid>
-                
-                <!-- Content -->
-                <StackLayout Grid.Row="1" 
-                             Padding="24,10,24,20"
-                             Spacing="16">
+                           HorizontalOptions="Center" />
                     
-                    <!-- Book Name Input -->
-                    <StackLayout Spacing="8">
-                        <Label Text="Enter Book Name"
-                               FontSize="16"
-                               TextColor="#5A67D8"
-                               FontAttributes="Bold" />
-                        <Frame BackgroundColor="#F8F9FA"
-                               BorderColor="#5A67D8"
-                               CornerRadius="8"
-                               Padding="16,14"
-                               HasShadow="False">
-                            <Entry x:Name="BookNameEntry"
-                                   Placeholder="Enter cashbook name..."
-                                   PlaceholderColor="#6C757D"
-                                   TextColor="#2C3E50"
-                                   FontSize="16"
-                                   BackgroundColor="Transparent"
-                                   ReturnType="Done"
-                                   Completed="OnBookNameEntryCompleted" />
-                        </Frame>
-                    </StackLayout>
+                    <Entry Placeholder="Enter cashbook name..."
+                           Text="{Binding NewBookName}"
+                           FontSize="16"
+                           ReturnType="Done"
+                           ReturnCommand="{Binding CreateBookCommand}"
+                           ReturnCommandParameter="{Binding NewBookName}" />
+                    
+                    <Grid ColumnDefinitions="*,*" ColumnSpacing="12">
+                        <Button Grid.Column="0"
+                                Text="Cancel"
+                                BackgroundColor="LightGray"
+                                TextColor="Black"
+                                Command="{Binding CloseAddBookModalCommand}" />
+                        <Button Grid.Column="1"
+                                Text="Create"
+                                BackgroundColor="#5A67D8"
+                                TextColor="White"
+                                Command="{Binding CreateBookCommand}"
+                                CommandParameter="{Binding NewBookName}" />
+                    </Grid>
                 </StackLayout>
-                
-                                <!-- Bottom Button -->
-                <Grid Grid.Row="2" 
-                      Padding="24,0,24,24"
-                      BackgroundColor="White">
-                    <Button Text="+ ADD NEW BOOK"
-                            BackgroundColor="#5A67D8"
-                            TextColor="White"
-                            FontSize="16"
-                            FontAttributes="Bold"
-                            CornerRadius="8"
-                            HeightRequest="48"
-                            Clicked="OnCreateBookClicked" />
-                </Grid>
-             </Grid>
             </Frame>
         </Grid>
 

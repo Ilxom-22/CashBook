@@ -22,8 +22,12 @@ public static class MauiProgram
 		{
 			client.Timeout = TimeSpan.FromSeconds(10); // 10 second timeout for quick error feedback
 		});
+		
+		// Register ViewModels
 		builder.Services.AddTransient<MainPageViewModel>();
-		builder.Services.AddSingleton<MainPage>();
+		
+		// Register Pages
+		builder.Services.AddTransient<MainPage>();
 
 #if DEBUG
 		builder.Logging.AddDebug();

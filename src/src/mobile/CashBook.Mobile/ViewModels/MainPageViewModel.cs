@@ -16,6 +16,8 @@ public class MainPageViewModel : INotifyPropertyChanged
     private string _statusMessage = string.Empty;
     private bool _hasError = false;
     private bool _hasSuccess = false;
+    private bool _isAddBookModalVisible = false;
+    private string _newBookName = string.Empty;
     
     public ObservableCollection<CashbookModel> Cashbooks { get; } = new();
     
@@ -70,14 +72,41 @@ public class MainPageViewModel : INotifyPropertyChanged
             OnPropertyChanged();
         }
     }
+
+    public bool IsAddBookModalVisible
+    {
+        get => _isAddBookModalVisible;
+        set
+        {
+            _isAddBookModalVisible = value;
+            OnPropertyChanged();
+        }
+    }
+
+    public string NewBookName
+    {
+        get => _newBookName;
+        set
+        {
+            _newBookName = value;
+            OnPropertyChanged();
+        }
+    }
     
     public bool HasStatusMessage => !string.IsNullOrWhiteSpace(StatusMessage);
     
+    // Commands
     public ICommand LoadCashbooksCommand { get; }
     public ICommand AddCashbookCommand { get; }
     public ICommand UpdateCashbookCommand { get; }
     public ICommand DeleteCashbookCommand { get; }
     public ICommand DismissStatusCommand { get; }
+    public ICommand MenuTappedCommand { get; }
+    public ICommand SearchTappedCommand { get; set; }
+    public ICommand MenuButtonCommand { get; }
+    public ICommand ShowAddBookModalCommand { get; }
+    public ICommand CloseAddBookModalCommand { get; }
+    public ICommand CreateBookCommand { get; }
     
     public MainPageViewModel(ICashbookService cashbookService)
     {
@@ -87,6 +116,12 @@ public class MainPageViewModel : INotifyPropertyChanged
         UpdateCashbookCommand = new Command<(Guid id, string name)>(async (param) => await UpdateCashbookAsync(param.id, param.name));
         DeleteCashbookCommand = new Command<Guid>(async (id) => await DeleteCashbookAsync(id));
         DismissStatusCommand = new Command(DismissStatus);
+        MenuTappedCommand = new Command(OnMenuTapped);
+        SearchTappedCommand = new Command(OnSearchTapped);
+        MenuButtonCommand = new Command<CashbookModel>(OnMenuButtonTapped);
+        ShowAddBookModalCommand = new Command(OnShowAddBookModal);
+        CloseAddBookModalCommand = new Command(OnCloseAddBookModal);
+        CreateBookCommand = new Command<string>(async (name) => await OnCreateBook(name));
     }
     
     private async Task LoadCashbooksAsync()
@@ -105,11 +140,6 @@ public class MainPageViewModel : INotifyPropertyChanged
                 _allCashbooks.Add(cashbook);
             }
             FilterCashbooks();
-            
-            if (_allCashbooks.Count == 0)
-            {
-                // Don't show any message when list is empty - let user see the clean empty state
-            }
         }
         catch (Exception ex)
         {
@@ -183,6 +213,52 @@ public class MainPageViewModel : INotifyPropertyChanged
         catch (Exception ex)
         {
             ShowErrorMessage($"Failed to delete cashbook: {ex.Message}");
+        }
+    }
+
+    private void OnMenuTapped()
+    {
+        // Handle menu tap - can show settings, about, etc.
+        // For now, just show a simple message
+        ShowSuccessMessage("Menu functionality coming soon!");
+    }
+
+    private void OnSearchTapped()
+    {
+        // This will be handled by the MainPage code-behind to show search bar
+        // We could also implement search logic here if needed
+    }
+
+    private void OnMenuButtonTapped(CashbookModel cashbook)
+    {
+        if (cashbook == null) return;
+
+        // For now, we'll implement a simple rename functionality
+        // In a real app, this would show an action sheet with options
+        // This is a simplified implementation for the refactored architecture
+        
+        // You can expand this to show proper action sheets later
+        ShowSuccessMessage($"Options for {cashbook.Name} - Feature coming soon!");
+    }
+
+    private void OnShowAddBookModal()
+    {
+        NewBookName = string.Empty;
+        IsAddBookModalVisible = true;
+    }
+
+    private void OnCloseAddBookModal()
+    {
+        IsAddBookModalVisible = false;
+        NewBookName = string.Empty;
+    }
+
+    private async Task OnCreateBook(string name)
+    {
+        if (!string.IsNullOrWhiteSpace(name))
+        {
+            IsAddBookModalVisible = false;
+            await AddCashbookAsync(name);
         }
     }
     
