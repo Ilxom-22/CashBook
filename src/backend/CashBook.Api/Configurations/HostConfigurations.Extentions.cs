@@ -1,5 +1,5 @@
 using System.Reflection;
-using CashBook.Application.Cashbooks.Commands;
+using CashBook.Domain.Common.MediatrPipelines;
 using CashBook.Infrastructure.Cashbooks.CommandHandlers;
 using CashBook.Persistence.DataContexts;
 using CashBook.Persistence.Extensions;
@@ -7,6 +7,7 @@ using CashBook.Persistence.Interceptors;
 using CashBook.Persistence.Repositories;
 using CashBook.Persistence.Repositories.Interfaces;
 using FluentValidation;
+using MediatR;
 using Microsoft.EntityFrameworkCore;
 
 namespace CashBook.Api.Configurations;
@@ -58,6 +59,8 @@ public static partial class HostConfigurations
     {
         builder.Services.AddMediatR(conf 
             => {conf.RegisterServicesFromAssemblies(typeof(CreateCashbookCommandHandler).Assembly);});
+
+        builder.Services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehavior<,>));
         
         return builder;
     }
