@@ -15,7 +15,7 @@ public class CategoryRepository(AppDbContext context)
         return base.Get(predicate, queryOptions);
     }
     
-    public new async ValueTask<Category> CreateAsync(Category category, bool saveChanges = true, CancellationToken cancellationToken = default)
+    public new async ValueTask<Category> CreateAsync(Category category, CancellationToken cancellationToken, bool saveChanges = true)
     {
         return await base.CreateAsync(category, saveChanges, cancellationToken);
     }

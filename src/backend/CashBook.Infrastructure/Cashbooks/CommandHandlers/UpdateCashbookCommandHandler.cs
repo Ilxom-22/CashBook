@@ -19,6 +19,6 @@ public class UpdateCashbookCommandHandler(
 
         mapper.Map(request, existingCashbook);
         
-        return await cashbookRepository.UpdateAsync(existingCashbook, true, cancellationToken);
+        return await cashbookRepository.UpdateAsync(existingCashbook, cancellationToken);
     }
 } 

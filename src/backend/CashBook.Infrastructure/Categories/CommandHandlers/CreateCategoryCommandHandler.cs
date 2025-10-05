@@ -10,6 +10,6 @@ public class CreateCategoryCommandHandler(ICategoryRepository categoryRepository
     public async Task<Category> Handle(CreateCategoryCommand request, CancellationToken cancellationToken)
     {
         return await categoryRepository
-            .CreateAsync(new Category { Name = request.CategoryName}, cancellationToken: cancellationToken);
+            .CreateAsync(new Category { Name = request.CategoryName}, cancellationToken);
     }
 }

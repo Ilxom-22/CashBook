@@ -13,6 +13,6 @@ public class CreateCashbookCommandHandler(
     public async Task<Cashbook> Handle(CreateCashbookCommand request, CancellationToken cancellationToken)
     {
         var cashbook = mapper.Map<Cashbook>(request);
-        return await cashbookRepository.CreateAsync(cashbook, true, cancellationToken);
+        return await cashbookRepository.CreateAsync(cashbook, cancellationToken);
     }
 }

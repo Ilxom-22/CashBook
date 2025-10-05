@@ -15,22 +15,22 @@ public class CashbookRepository(AppDbContext dbContext) : EntityRepositoryBase<A
         return base.Get(predicate, queryOptions);
     }
 
-    public new async ValueTask<Cashbook> CreateAsync(Cashbook cashbook, bool saveChanges = true, CancellationToken cancellationToken = default)
+    public new async ValueTask<Cashbook> CreateAsync(Cashbook cashbook, CancellationToken cancellationToken, bool saveChanges = true)
     {
         return await base.CreateAsync(cashbook, saveChanges, cancellationToken);
     }
 
-    public new async ValueTask<Cashbook> UpdateAsync(Cashbook cashbook, bool saveChanges = true, CancellationToken cancellationToken = default)
+    public new async ValueTask<Cashbook> UpdateAsync(Cashbook cashbook, CancellationToken cancellationToken, bool saveChanges = true)
     {
         return await base.UpdateAsync(cashbook, saveChanges, cancellationToken);
     }
 
-    public new async ValueTask<Cashbook> DeleteAsync(Cashbook cashbook, bool saveChanges = true, CancellationToken cancellationToken = default)
+    public new async ValueTask<Cashbook> DeleteAsync(Cashbook cashbook, CancellationToken cancellationToken, bool saveChanges = true)
     {
         return await base.DeleteAsync(cashbook, saveChanges, cancellationToken);
     }
 
-    public async ValueTask<Cashbook?> GetByIdAsync(Guid id, CancellationToken cancellationToken = default)
+    public async ValueTask<Cashbook?> GetByIdAsync(Guid id, CancellationToken cancellationToken)
     {
         return await Get(c => c.Id == id).FirstOrDefaultAsync(cancellationToken);
     }
