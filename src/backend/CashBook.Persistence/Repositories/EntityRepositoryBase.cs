@@ -1,5 +1,6 @@
 using System.Linq.Expressions;
 using CashBook.Domain.Common.Entities;
+using CashBook.Domain.Common.Entities.Interfaces;
 using CashBook.Domain.Common.Queries;
 using CashBook.Persistence.Extensions;
 using Microsoft.EntityFrameworkCore;

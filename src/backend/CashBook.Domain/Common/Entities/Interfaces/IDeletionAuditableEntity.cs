@@ -1,4 +1,4 @@
-namespace CashBook.Domain.Common.Entities;
+namespace CashBook.Domain.Common.Entities.Interfaces;
 
 public interface IDeletionAuditableEntity
 {

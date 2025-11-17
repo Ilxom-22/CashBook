@@ -1,4 +1,5 @@
 using CashBook.Domain.Common.Entities;
+using CashBook.Domain.Common.Entities.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Diagnostics;
 
