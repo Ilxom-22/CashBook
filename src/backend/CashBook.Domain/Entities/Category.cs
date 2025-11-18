@@ -3,7 +3,7 @@ using CashBook.Domain.Common.Entities;
 
 namespace CashBook.Domain.Entities;
 
-public class Category : Entity
+public class Category : EntityBase
 {
     [MaxLength(64)]
     public string Name { get; set; } = null!;

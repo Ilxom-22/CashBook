@@ -4,7 +4,7 @@ using CashBook.Domain.Enums;
 
 namespace CashBook.Domain.Entities;
 
-public class Transaction : Entity
+public class Transaction : EntityBase
 {
     public decimal Amount { get; set; }
 
