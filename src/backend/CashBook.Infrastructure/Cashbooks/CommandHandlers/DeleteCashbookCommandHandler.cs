@@ -15,6 +15,6 @@ public class DeleteCashbookCommandHandler(
         if (existingCashbook is null)
             throw new ArgumentException($"Cashbook with ID {request.Id} not found.");
         
-        return await cashbookRepository.DeleteAsync(existingCashbook, true, cancellationToken);
+        return await cashbookRepository.DeleteAsync(existingCashbook, cancellationToken);
     }
 } 
