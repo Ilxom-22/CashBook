@@ -2,10 +2,8 @@ using CashBook.Domain.Common.Entities.Interfaces;
 
 namespace CashBook.Domain.Common.Entities;
 
-public abstract class AuditableSoftDeletedEntity : IAuditableEntity, ISoftDeletedEntity
+public abstract class AuditableSoftDeletedEntity : EntityBase, IAuditableEntity, ISoftDeletedEntity
 {
-    public Guid Id { get; set; }
-    
     public DateTimeOffset CreatedTime { get; set; }
     
     public DateTimeOffset? ModifiedTime { get; set; }

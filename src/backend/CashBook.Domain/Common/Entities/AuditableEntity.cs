@@ -2,10 +2,8 @@ using CashBook.Domain.Common.Entities.Interfaces;
 
 namespace CashBook.Domain.Common.Entities;
 
-public abstract class AuditableEntity : IAuditableEntity
+public abstract class AuditableEntity : EntityBase, IAuditableEntity
 {
-    public Guid Id { get; set; }
-    
     public DateTimeOffset CreatedTime { get; set; }
     
     public DateTimeOffset? ModifiedTime { get; set; }

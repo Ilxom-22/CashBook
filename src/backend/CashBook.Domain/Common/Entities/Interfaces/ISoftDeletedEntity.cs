@@ -1,6 +1,6 @@
 namespace CashBook.Domain.Common.Entities.Interfaces;
 
-public interface ISoftDeletedEntity : IEntity
+public interface ISoftDeletedEntity
 {
     bool IsDeleted { get; set; }
     
