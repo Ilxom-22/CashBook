@@ -1,9 +1,8 @@
-using CashBook.Application.Cashbooks.Commands;
 using CashBook.Domain.Common.Commands;
-using CashBook.Domain.Entities;
+using CashBook.Domain.Entities.Cashbooks;
 using CashBook.Persistence.Repositories.Interfaces;
 
-namespace CashBook.Infrastructure.Cashbooks.CommandHandlers;
+namespace CashBook.Application.Cashbooks.Commands.DeleteCashbook;
 
 public class DeleteCashbookCommandHandler(
     ICashbookRepository cashbookRepository) : ICommandHandler<DeleteCashbookCommand, Cashbook>

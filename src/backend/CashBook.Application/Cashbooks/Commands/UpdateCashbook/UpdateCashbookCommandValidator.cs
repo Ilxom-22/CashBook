@@ -1,7 +1,6 @@
-using CashBook.Application.Cashbooks.Commands;
 using FluentValidation;
 
-namespace CashBook.Infrastructure.Cashbooks.Validators;
+namespace CashBook.Application.Cashbooks.Commands.UpdateCashbook;
 
 public class UpdateCashbookCommandValidator : AbstractValidator<UpdateCashbookCommand>
 {

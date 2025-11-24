@@ -1,10 +1,9 @@
 using AutoMapper;
-using CashBook.Application.Cashbooks.Commands;
 using CashBook.Domain.Common.Commands;
-using CashBook.Domain.Entities;
+using CashBook.Domain.Entities.Cashbooks;
 using CashBook.Persistence.Repositories.Interfaces;
 
-namespace CashBook.Infrastructure.Cashbooks.CommandHandlers;
+namespace CashBook.Application.Cashbooks.Commands.UpdateCashbook;
 
 public class UpdateCashbookCommandHandler(
     ICashbookRepository cashbookRepository, 

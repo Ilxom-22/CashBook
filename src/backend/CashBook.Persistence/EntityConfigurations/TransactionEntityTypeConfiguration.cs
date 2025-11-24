@@ -1,7 +1,8 @@
-using CashBook.Domain.Entities;
+using CashBook.Domain.Entities.Cashbooks;
+using CashBook.Domain.Entities.Categories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using Transaction = CashBook.Domain.Entities.Transaction;
+using Transaction = CashBook.Domain.Entities.Transactions.Transaction;
 
 namespace CashBook.Persistence.EntityConfigurations;
 

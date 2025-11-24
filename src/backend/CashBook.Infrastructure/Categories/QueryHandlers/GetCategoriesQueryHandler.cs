@@ -1,6 +1,7 @@
 using CashBook.Application.Categories.Queries;
 using CashBook.Domain.Common.Queries;
 using CashBook.Domain.Entities;
+using CashBook.Domain.Entities.Categories;
 using CashBook.Persistence.Repositories.Interfaces;
 
 namespace CashBook.Infrastructure.Categories.QueryHandlers;

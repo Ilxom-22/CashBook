@@ -1,6 +1,5 @@
 using System.Linq.Expressions;
 using CashBook.Domain.Common.Entities;
-using CashBook.Domain.Common.Entities.Interfaces;
 using CashBook.Domain.Common.Queries;
 using CashBook.Persistence.Extensions;
 using Microsoft.EntityFrameworkCore;
@@ -9,7 +8,7 @@ namespace CashBook.Persistence.Repositories;
 
 public abstract class EntityRepositoryBase<TContext, TEntity>(TContext context)
     where TContext : DbContext 
-    where TEntity : class, IEntity
+    where TEntity : EntityBase
 {
     protected IQueryable<TEntity> Get(
         Expression<Func<TEntity, bool>>? predicate = default, 

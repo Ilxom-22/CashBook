@@ -1,6 +1,7 @@
 using System.Linq.Expressions;
 using CashBook.Domain.Common.Queries;
 using CashBook.Domain.Entities;
+using CashBook.Domain.Entities.Categories;
 
 namespace CashBook.Persistence.Repositories.Interfaces;
 

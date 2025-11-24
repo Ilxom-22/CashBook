@@ -1,5 +1,6 @@
 using CashBook.Domain.Common.Commands;
 using CashBook.Domain.Entities;
+using CashBook.Domain.Entities.Categories;
 
 namespace CashBook.Application.Categories.Commands;
 

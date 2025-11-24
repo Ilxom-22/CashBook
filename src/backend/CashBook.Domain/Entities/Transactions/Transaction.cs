@@ -1,8 +1,10 @@
 using System.ComponentModel.DataAnnotations;
 using CashBook.Domain.Common.Entities;
+using CashBook.Domain.Entities.Cashbooks;
+using CashBook.Domain.Entities.Categories;
 using CashBook.Domain.Enums;
 
-namespace CashBook.Domain.Entities;
+namespace CashBook.Domain.Entities.Transactions;
 
 public class Transaction : EntityBase
 {

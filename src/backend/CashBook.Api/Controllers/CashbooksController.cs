@@ -1,4 +1,6 @@
-using CashBook.Application.Cashbooks.Commands;
+using CashBook.Application.Cashbooks.Commands.CreateCashbook;
+using CashBook.Application.Cashbooks.Commands.DeleteCashbook;
+using CashBook.Application.Cashbooks.Commands.UpdateCashbook;
 using CashBook.Application.Cashbooks.Queries;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
@@ -20,9 +22,10 @@ public class CashbooksController(IMediator mediator) : ControllerBase
     [HttpPost]
     public async ValueTask<IActionResult> AddCashbook(
         [FromBody] string cashbookName,
+        [FromBody] string currency,
         CancellationToken cancellationToken)
     {
-        var result = await mediator.Send(new CreateCashbookCommand { CashbookName = cashbookName }, cancellationToken);
+        var result = await mediator.Send(new CreateCashbookCommand { CashbookName = cashbookName, Currency = currency }, cancellationToken);
         
         return Ok(result);
     }

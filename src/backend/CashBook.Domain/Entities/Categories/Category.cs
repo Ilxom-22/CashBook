@@ -1,7 +1,7 @@
 using System.ComponentModel.DataAnnotations;
 using CashBook.Domain.Common.Entities;
 
-namespace CashBook.Domain.Entities;
+namespace CashBook.Domain.Entities.Categories;
 
 public class Category : EntityBase
 {

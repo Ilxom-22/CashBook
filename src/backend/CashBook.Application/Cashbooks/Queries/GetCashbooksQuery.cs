@@ -1,5 +1,5 @@
 using CashBook.Domain.Common.Queries;
-using CashBook.Domain.Entities;
+using CashBook.Domain.Entities.Cashbooks;
 
 namespace CashBook.Application.Cashbooks.Queries;
 

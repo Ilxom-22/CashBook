@@ -1,6 +1,6 @@
 using System.Reflection;
+using CashBook.Application.Cashbooks.Commands.CreateCashbook;
 using CashBook.Domain.Common.MediatrPipelines;
-using CashBook.Infrastructure.Cashbooks.CommandHandlers;
 using CashBook.Persistence.DataContexts;
 using CashBook.Persistence.Extensions;
 using CashBook.Persistence.Interceptors;

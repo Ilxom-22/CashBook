@@ -1,6 +1,7 @@
 using AutoMapper;
-using CashBook.Application.Cashbooks.Commands;
-using CashBook.Domain.Entities;
+using CashBook.Application.Cashbooks.Commands.CreateCashbook;
+using CashBook.Application.Cashbooks.Commands.UpdateCashbook;
+using CashBook.Domain.Entities.Cashbooks;
 
 namespace CashBook.Application.Cashbooks.Mappers;
 

@@ -1,4 +1,6 @@
-using CashBook.Domain.Entities;
+using CashBook.Domain.Entities.Cashbooks;
+using CashBook.Domain.Entities.Categories;
+using CashBook.Domain.Entities.Transactions;
 using Microsoft.EntityFrameworkCore;
 
 namespace CashBook.Persistence.DataContexts;
