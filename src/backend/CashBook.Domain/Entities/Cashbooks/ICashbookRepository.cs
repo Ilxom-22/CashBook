@@ -1,12 +1,10 @@
-using System.Linq.Expressions;
-using CashBook.Domain.Common.Queries;
 using CashBook.Domain.Entities.Cashbooks;
 
-namespace CashBook.Persistence.Repositories.Interfaces;
+namespace CashBook.Domain.Entities;
 
 public interface ICashbookRepository
 {
-    IQueryable<Cashbook> Get(Expression<Func<Cashbook, bool>>? predicate = null, QueryOptions queryOptions = default);
+    bool CashbookExistsByName(string cashbookName);
     
     ValueTask<Cashbook> CreateAsync(Cashbook cashbook, CancellationToken cancellationToken, bool saveChanges = true);
 

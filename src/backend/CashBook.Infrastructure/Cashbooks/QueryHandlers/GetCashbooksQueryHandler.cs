@@ -1,16 +1,17 @@
 using CashBook.Application.Cashbooks.Queries;
 using CashBook.Domain.Common.Queries;
 using CashBook.Domain.Entities.Cashbooks;
-using CashBook.Persistence.Repositories.Interfaces;
+using CashBook.Persistence.DataContexts;
+using Microsoft.EntityFrameworkCore;
 
 namespace CashBook.Infrastructure.Cashbooks.QueryHandlers;
 
-public class GetCashbooksQueryHandler(ICashbookRepository cashbookRepository) 
+public class GetCashbooksQueryHandler(AppDbContext dbContext) 
     : IQueryHandler<GetCashbooksQuery, IQueryable<Cashbook>>
 {
     public Task<IQueryable<Cashbook>> Handle(GetCashbooksQuery request, CancellationToken cancellationToken)
     {
-        var result = cashbookRepository.Get(queryOptions: new QueryOptions(QueryTrackingMode.AsNoTracking));
+        var result = dbContext.CashBooks.AsNoTracking();
         
         return Task.FromResult(result);
     }

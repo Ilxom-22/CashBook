@@ -6,7 +6,7 @@ public class UpdateCashbookCommandValidator : AbstractValidator<UpdateCashbookCo
 {
     public UpdateCashbookCommandValidator()
     {
-        RuleFor(x => x.Id)
+        RuleFor(x => x.CashbookId)
             .NotEmpty()
             .NotEqual(Guid.Empty);
             

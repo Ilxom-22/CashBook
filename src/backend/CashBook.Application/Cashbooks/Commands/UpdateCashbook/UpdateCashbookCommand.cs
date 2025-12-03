@@ -5,6 +5,7 @@ namespace CashBook.Application.Cashbooks.Commands.UpdateCashbook;
 
 public class UpdateCashbookCommand : ICommand<Cashbook>
 {
-    public Guid Id { get; set; }
+    public Guid CashbookId { get; set; }
+    
     public string CashbookName { get; set; } = null!;
 } 

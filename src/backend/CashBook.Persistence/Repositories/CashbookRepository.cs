@@ -1,8 +1,7 @@
-using System.Linq.Expressions;
 using CashBook.Domain.Common.Queries;
+using CashBook.Domain.Entities;
 using CashBook.Domain.Entities.Cashbooks;
 using CashBook.Persistence.DataContexts;
-using CashBook.Persistence.Repositories.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
 namespace CashBook.Persistence.Repositories;
@@ -10,9 +9,10 @@ namespace CashBook.Persistence.Repositories;
 public class CashbookRepository(AppDbContext dbContext) : EntityRepositoryBase<AppDbContext, Cashbook>(dbContext),
     ICashbookRepository
 {
-    public new IQueryable<Cashbook> Get(Expression<Func<Cashbook, bool>>? predicate = null, QueryOptions queryOptions = default)
+    public bool CashbookExistsByName(string cashbookName)
     {
-        return base.Get(predicate, queryOptions);
+        return base.Get(c => c.Name == cashbookName, new QueryOptions(QueryTrackingMode.AsNoTracking))
+            .FirstOrDefault() != null;
     }
 
     public new async ValueTask<Cashbook> CreateAsync(Cashbook cashbook, CancellationToken cancellationToken, bool saveChanges = true)

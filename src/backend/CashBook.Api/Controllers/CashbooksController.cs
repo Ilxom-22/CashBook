@@ -21,11 +21,10 @@ public class CashbooksController(IMediator mediator) : ControllerBase
 
     [HttpPost]
     public async ValueTask<IActionResult> AddCashbook(
-        [FromBody] string cashbookName,
-        [FromBody] string currency,
+        [FromBody] CreateCashbookCommand createCashbookCommand,
         CancellationToken cancellationToken)
     {
-        var result = await mediator.Send(new CreateCashbookCommand { CashbookName = cashbookName, Currency = currency }, cancellationToken);
+        var result = await mediator.Send(createCashbookCommand, cancellationToken);
         
         return Ok(result);
     }
@@ -36,7 +35,7 @@ public class CashbooksController(IMediator mediator) : ControllerBase
         [FromBody] string cashbookName,
         CancellationToken cancellationToken)
     {
-        var result = await mediator.Send(new UpdateCashbookCommand { Id = id, CashbookName = cashbookName }, cancellationToken);
+        var result = await mediator.Send(new UpdateCashbookCommand { CashbookId = id, CashbookName = cashbookName }, cancellationToken);
         
         return Ok(result);
     }
