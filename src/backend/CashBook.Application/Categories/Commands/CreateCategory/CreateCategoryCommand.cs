@@ -1,8 +1,7 @@
 using CashBook.Domain.Common.Commands;
-using CashBook.Domain.Entities;
 using CashBook.Domain.Entities.Categories;
 
-namespace CashBook.Application.Categories.Commands;
+namespace CashBook.Application.Categories.Commands.CreateCategory;
 
 public class CreateCategoryCommand : ICommand<Category>
 {

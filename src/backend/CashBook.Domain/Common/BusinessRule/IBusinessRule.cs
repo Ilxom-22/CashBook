@@ -1,4 +1,4 @@
-﻿namespace CashBook.Domain.Common;
+﻿namespace CashBook.Domain.Common.BusinessRule;
 
 public interface IBusinessRule
 {

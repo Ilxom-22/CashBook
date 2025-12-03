@@ -1,10 +1,9 @@
-using CashBook.Application.Cashbooks.Queries;
 using CashBook.Domain.Common.Queries;
 using CashBook.Domain.Entities.Cashbooks;
 using CashBook.Persistence.DataContexts;
 using Microsoft.EntityFrameworkCore;
 
-namespace CashBook.Infrastructure.Cashbooks.QueryHandlers;
+namespace CashBook.Application.Cashbooks.Queries.GetCashbooks;
 
 public class GetCashbooksQueryHandler(AppDbContext dbContext) 
     : IQueryHandler<GetCashbooksQuery, IQueryable<Cashbook>>

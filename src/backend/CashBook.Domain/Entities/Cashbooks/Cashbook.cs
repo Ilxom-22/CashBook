@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using CashBook.Domain.Common.Entities;
+using CashBook.Domain.Common.Entities.Interfaces;
 using CashBook.Domain.Entities.Events;
 using CashBook.Domain.Entities.Rules;
 using CashBook.Domain.Enums;

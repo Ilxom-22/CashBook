@@ -1,4 +1,5 @@
 ﻿using CashBook.Domain.Common;
+using CashBook.Domain.Common.BusinessRule;
 
 namespace CashBook.Domain.Entities.Rules;
 

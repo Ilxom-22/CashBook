@@ -1,7 +1,7 @@
 using CashBook.Domain.Common.Queries;
 using CashBook.Domain.Entities.Cashbooks;
 
-namespace CashBook.Application.Cashbooks.Queries;
+namespace CashBook.Application.Cashbooks.Queries.GetCashbooks;
 
 public class GetCashbooksQuery : IQuery<IQueryable<Cashbook>>
 {
