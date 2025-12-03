@@ -1,6 +1,6 @@
 using System.Reflection;
 using CashBook.Application.Cashbooks.Commands.CreateCashbook;
-using CashBook.Domain.Common.MediatrPipelines;
+using CashBook.Application.Common.MediatrPipelines;
 using CashBook.Domain.Entities;
 using CashBook.Persistence.DataContexts;
 using CashBook.Persistence.Extensions;
