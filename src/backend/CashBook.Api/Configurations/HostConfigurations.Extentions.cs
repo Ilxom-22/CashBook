@@ -1,6 +1,7 @@
 using System.Reflection;
 using CashBook.Application.Cashbooks.Commands.CreateCashbook;
 using CashBook.Domain.Common.MediatrPipelines;
+using CashBook.Domain.Entities;
 using CashBook.Persistence.DataContexts;
 using CashBook.Persistence.Extensions;
 using CashBook.Persistence.Interceptors;
@@ -33,13 +34,6 @@ public static partial class HostConfigurations
     {
         builder.Services.AddRouting(options => options.LowercaseUrls = true);
         builder.Services.AddControllers();
-
-        return builder;
-    }
-    
-    private static WebApplicationBuilder AddMappers(this WebApplicationBuilder builder)
-    {
-        builder.Services.AddAutoMapper(Assemblies);
 
         return builder;
     }

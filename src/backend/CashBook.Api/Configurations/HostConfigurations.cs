@@ -7,7 +7,6 @@ public static partial class HostConfigurations
         builder
             .AddDevTools()
             .AddExposers()
-            .AddMappers()
             .AddMediator()
             .AddValidators()
             .AddServices()
