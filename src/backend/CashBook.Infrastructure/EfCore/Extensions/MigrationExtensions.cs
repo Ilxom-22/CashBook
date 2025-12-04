@@ -1,7 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace CashBook.Persistence.Extensions;
+namespace CashBook.Infrastructure.EfCore.Extensions;
 
 public static class MigrationExtensions
 {

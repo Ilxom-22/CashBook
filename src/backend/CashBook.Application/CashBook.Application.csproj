@@ -8,7 +8,6 @@
 
     <ItemGroup>
       <ProjectReference Include="..\CashBook.Domain\CashBook.Domain.csproj" />
-      <ProjectReference Include="..\CashBook.Persistence\CashBook.Persistence.csproj" />
     </ItemGroup>
 
     <ItemGroup>

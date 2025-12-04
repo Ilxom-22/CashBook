@@ -6,8 +6,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CashBook.Domain", "CashBook
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CashBook.Infrastructure", "CashBook.Infrastructure\CashBook.Infrastructure.csproj", "{DC26DEC3-D052-47F4-9E46-2F80A6EB2B1E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CashBook.Persistence", "CashBook.Persistence\CashBook.Persistence.csproj", "{50815CD1-54D6-4DD8-B0C7-537C59848740}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CashBook.Application", "CashBook.Application\CashBook.Application.csproj", "{2E627997-7782-4FC1-8896-3F749CB75E15}"
 EndProject
 Global
@@ -28,10 +26,6 @@ Global
 		{DC26DEC3-D052-47F4-9E46-2F80A6EB2B1E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DC26DEC3-D052-47F4-9E46-2F80A6EB2B1E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DC26DEC3-D052-47F4-9E46-2F80A6EB2B1E}.Release|Any CPU.Build.0 = Release|Any CPU
-		{50815CD1-54D6-4DD8-B0C7-537C59848740}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{50815CD1-54D6-4DD8-B0C7-537C59848740}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{50815CD1-54D6-4DD8-B0C7-537C59848740}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{50815CD1-54D6-4DD8-B0C7-537C59848740}.Release|Any CPU.Build.0 = Release|Any CPU
 		{2E627997-7782-4FC1-8896-3F749CB75E15}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{2E627997-7782-4FC1-8896-3F749CB75E15}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2E627997-7782-4FC1-8896-3F749CB75E15}.Release|Any CPU.ActiveCfg = Release|Any CPU

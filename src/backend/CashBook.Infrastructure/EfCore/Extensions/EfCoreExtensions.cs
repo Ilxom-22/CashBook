@@ -2,7 +2,7 @@ using CashBook.Domain.Common.Entities;
 using CashBook.Domain.Common.Queries;
 using Microsoft.EntityFrameworkCore;
 
-namespace CashBook.Persistence.Extensions;
+namespace CashBook.Infrastructure.EfCore.Extensions;
 
 public static class EfCoreExtensions
 {

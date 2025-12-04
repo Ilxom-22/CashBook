@@ -8,11 +8,10 @@
 
     <ItemGroup>
       <ProjectReference Include="..\CashBook.Application\CashBook.Application.csproj" />
-      <ProjectReference Include="..\CashBook.Persistence\CashBook.Persistence.csproj" />
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="Domain\" />
+        <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="9.0.6" />
     </ItemGroup>
 
 </Project>

@@ -1,6 +1,5 @@
 using CashBook.Domain.Common.Commands;
 using CashBook.Domain.Entities.Categories;
-using CashBook.Persistence.Repositories.Interfaces;
 
 namespace CashBook.Application.Categories.Commands.CreateCategory;
 

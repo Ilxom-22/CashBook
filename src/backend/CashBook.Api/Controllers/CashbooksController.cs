@@ -2,7 +2,6 @@ using CashBook.Application.Cashbooks.Commands.CreateCashbook;
 using CashBook.Application.Cashbooks.Commands.DeleteCashbook;
 using CashBook.Application.Cashbooks.Commands.UpdateCashbook;
 using CashBook.Application.Cashbooks.Queries;
-using CashBook.Application.Cashbooks.Queries.GetCashbooks;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 

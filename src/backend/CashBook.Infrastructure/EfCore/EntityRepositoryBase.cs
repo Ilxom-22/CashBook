@@ -1,10 +1,10 @@
 using System.Linq.Expressions;
 using CashBook.Domain.Common.Entities;
 using CashBook.Domain.Common.Queries;
-using CashBook.Persistence.Extensions;
+using CashBook.Infrastructure.EfCore.Extensions;
 using Microsoft.EntityFrameworkCore;
 
-namespace CashBook.Persistence.Repositories;
+namespace CashBook.Infrastructure.EfCore;
 
 public abstract class EntityRepositoryBase<TContext, TEntity>(TContext context)
     where TContext : DbContext 

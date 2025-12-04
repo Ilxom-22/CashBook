@@ -1,11 +1,9 @@
 using System.Linq.Expressions;
 using CashBook.Domain.Common.Queries;
-using CashBook.Domain.Entities;
 using CashBook.Domain.Entities.Categories;
-using CashBook.Persistence.DataContexts;
-using CashBook.Persistence.Repositories.Interfaces;
+using CashBook.Infrastructure.EfCore;
 
-namespace CashBook.Persistence.Repositories;
+namespace CashBook.Infrastructure.Domain.Categories;
 
 public class CategoryRepository(AppDbContext context) 
     : EntityRepositoryBase<AppDbContext, Category>(context),

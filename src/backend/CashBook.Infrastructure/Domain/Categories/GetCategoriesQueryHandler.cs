@@ -1,8 +1,8 @@
+using CashBook.Application.Categories.Queries;
 using CashBook.Domain.Common.Queries;
 using CashBook.Domain.Entities.Categories;
-using CashBook.Persistence.Repositories.Interfaces;
 
-namespace CashBook.Application.Categories.Queries.GetCategories;
+namespace CashBook.Infrastructure.Domain.Categories;
 
 public class GetCategoriesQueryHandler(ICategoryRepository categoryRepository) 
     : IQueryHandler<GetCategoriesQuery, IQueryable<Category>>

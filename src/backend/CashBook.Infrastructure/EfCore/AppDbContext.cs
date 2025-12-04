@@ -3,7 +3,7 @@ using CashBook.Domain.Entities.Categories;
 using CashBook.Domain.Entities.Transactions;
 using Microsoft.EntityFrameworkCore;
 
-namespace CashBook.Persistence.DataContexts;
+namespace CashBook.Infrastructure.EfCore;
 
 public class AppDbContext(DbContextOptions<AppDbContext> options) : DbContext(options)
 {

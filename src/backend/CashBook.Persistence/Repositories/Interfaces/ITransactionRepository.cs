@@ -1,6 +1,0 @@
-namespace CashBook.Persistence.Repositories.Interfaces;
-
-public interface ITransactionRepository
-{
-    
-}

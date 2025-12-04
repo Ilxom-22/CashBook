@@ -2,11 +2,11 @@ using System.Reflection;
 using CashBook.Application.Cashbooks.Commands.CreateCashbook;
 using CashBook.Application.Common.MediatrPipelines;
 using CashBook.Domain.Entities;
-using CashBook.Persistence.DataContexts;
-using CashBook.Persistence.Extensions;
-using CashBook.Persistence.Interceptors;
-using CashBook.Persistence.Repositories;
-using CashBook.Persistence.Repositories.Interfaces;
+using CashBook.Domain.Entities.Categories;
+using CashBook.Infrastructure.Domain.Cashbooks;
+using CashBook.Infrastructure.Domain.Categories;
+using CashBook.Infrastructure.EfCore;
+using CashBook.Infrastructure.EfCore.Extensions;
 using FluentValidation;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
@@ -70,7 +70,6 @@ public static partial class HostConfigurations
     {
         builder.Services.AddScoped<ICashbookRepository, CashbookRepository>();
         builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
-        builder.Services.AddScoped<ITransactionRepository, TransactionRepository>();
         
         return builder;
     }

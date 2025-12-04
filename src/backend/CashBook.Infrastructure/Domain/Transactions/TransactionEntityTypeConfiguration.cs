@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Transaction = CashBook.Domain.Entities.Transactions.Transaction;
 
-namespace CashBook.Persistence.EntityConfigurations;
+namespace CashBook.Infrastructure.Domain.Transactions;
 
 public class TransactionEntityTypeConfiguration : IEntityTypeConfiguration<Transaction>
 {

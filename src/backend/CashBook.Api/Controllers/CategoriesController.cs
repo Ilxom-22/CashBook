@@ -1,7 +1,6 @@
 using CashBook.Application.Categories.Commands;
 using CashBook.Application.Categories.Commands.CreateCategory;
 using CashBook.Application.Categories.Queries;
-using CashBook.Application.Categories.Queries.GetCategories;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 

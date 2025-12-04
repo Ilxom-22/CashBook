@@ -1,10 +1,10 @@
 using CashBook.Domain.Common.Queries;
 using CashBook.Domain.Entities;
 using CashBook.Domain.Entities.Cashbooks;
-using CashBook.Persistence.DataContexts;
+using CashBook.Infrastructure.EfCore;
 using Microsoft.EntityFrameworkCore;
 
-namespace CashBook.Persistence.Repositories;
+namespace CashBook.Infrastructure.Domain.Cashbooks;
 
 public class CashbookRepository(AppDbContext dbContext) : EntityRepositoryBase<AppDbContext, Cashbook>(dbContext),
     ICashbookRepository
